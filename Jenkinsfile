@@ -1,14 +1,27 @@
 pipeline{
   agent any
   stages{
+    stage('Clean Up'){
+      steps{
+        sh "rm -rf /qacdevops/chaperootodo_client"
+      }
+    }  
     stage('Clone Repository'){
       steps{
-        sh "sudo apt update | sudo apt install git | git clone https://gitlab.com/qacdevops/chaperootodo_client"
+        sh '''
+        sudo apt update | sudo apt install git && 
+        git clone https://gitlab.com/qacdevops/chaperootodo_client && cd chaperootodo_client
+        '''
       }
     }
-    stage('Install Docker and Docker-compose'){
+    stage('Install Docker and Docker-Compose'){
       steps{
-        sh "curl https://get.docker.com | sudo bash | sudo usermod -aG docker $(whoami) | sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose | sudo chmod +x /usr/local/bin/docker-compose"
+        sh '''
+        curl https://get.docker.com | sudo bash &&
+        sudo usermod -aG docker ${whoami} &&
+        sudo curl -L https://github.com/docker/compose/releases/download/1.27.3/docker-compose-${uname -s}-${uname -m} -o /usr/local/bin/docker-compose
+        && sudo chmod +x /usr/local/bin/docker-compose
+        '''    
       }
     }
     stage('Deploy application'){

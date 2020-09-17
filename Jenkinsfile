@@ -3,8 +3,7 @@ pipeline{
   stages{
     stage('Clone Repository'){
       steps{
-        sh '''
-        sudo apt update | sudo apt install git 
+        sh ''' 
         git clone https://gitlab.com/qacdevops/chaperootodo_client
         cd chaperootodo_client
         pwd

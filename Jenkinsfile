@@ -7,6 +7,7 @@ pipeline{
         sudo apt update | sudo apt install git 
         git clone https://gitlab.com/qacdevops/chaperootodo_client
         cd chaperootodo_client
+        pwd
         '''
       }
     }
@@ -22,7 +23,7 @@ pipeline{
     }
     stage('Deploy application'){
       steps{
-        sh "sudo docker-compose up -d"
+        sh "pwd && sudo docker-compose up -d"
       }
     }
   }

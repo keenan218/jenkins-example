@@ -3,10 +3,10 @@ pipeline{
   stages{
     stage('Clone Repository'){
       steps{
-        sh ''' 
-        git clone https://gitlab.com/qacdevops/chaperootodo_client
-        cd chaperootodo_client
-        pwd
+        sh '''
+        chmod +x repo-clone.sh
+        ./repo-clone.sh
+        cd chaperootodo_client/
         '''
       }
     }

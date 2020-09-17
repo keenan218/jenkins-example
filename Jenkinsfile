@@ -23,7 +23,7 @@ pipeline{
     }
     stage('Deploy application'){
       steps{
-        sh "pwd && sudo docker-compose up -d"
+        sh "cd chaperootodo_client && sudo docker-compose up -d"
       }
     }
   }

@@ -1,11 +1,6 @@
 pipeline{
   agent any
   stages{
-#    stage('Clean Up'){
-#      steps{
-#        sh "rm -rf /qacdevops/chaperootodo_client"
-#      }
-#    }  
     stage('Clone Repository'){
       steps{
         sh '''
